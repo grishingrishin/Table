@@ -49,10 +49,7 @@ export default {
         ...mapActions(['authorization']),
         loginHandler() {
             const { login, password } = this;
-
-            return this.authorization({ login, password })
-                .then(() => this.$router.push('/'))
-                .catch(error => new Error(error));
+            return this.authorization({ login, password }).then(() => this.$router.push('/'));
         },
     },
 };
