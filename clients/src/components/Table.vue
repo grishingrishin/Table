@@ -40,28 +40,59 @@
         </thead>
         <tbody class="table__body">
             <tr class="table__row" v-for="(order, index) of getOrders" :key="index">
-                <td class="table__cell" v-for="(value, index) in order" :key="index">
-                    {{ value }}
-                </td>
-                <td class="table__cell">
-                    <div class="table__actions">
-                        <div class="table__action">
-                            <button type="button" class="table__btn" aria-label="Edit order">
-                                <i class="fas fa-edit"></i>
-                            </button>
+                <template v-if="order.id !== getEditOrder">
+                    <td class="table__cell" v-for="(value, index) in order" :key="index">
+                        {{ value }}
+                    </td>
+                    <td class="table__cell">
+                        <div class="table__actions">
+                            <div class="table__action">
+                                <button
+                                    type="button"
+                                    class="table__btn"
+                                    aria-label="Edit order"
+                                    @click="selectOrder(order.id)"
+                                >
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                            <div class="table__action">
+                                <button
+                                    type="button"
+                                    class="table__btn"
+                                    aria-label="Delete order"
+                                    @click="removeOrder(order.id)"
+                                >
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
                         </div>
-                        <div class="table__action">
-                            <button
-                                type="button"
-                                class="table__btn"
-                                aria-label="Delete order"
-                                @click="removedOrder(order.id)"
-                            >
-                                <i class="far fa-trash-alt"></i>
-                            </button>
+                    </td>
+                </template>
+                <template v-else>
+                    <td class="table__cell" v-for="(value, field, index) in order" :key="index">
+                        <input type="text" class="table__input" :name="field" :value="value" :placeholder="field" />
+                    </td>
+                    <td class="table__cell">
+                        <div class="table__actions">
+                            <div class="table__action">
+                                <button
+                                    type="button"
+                                    class="table__btn"
+                                    aria-label="Edit order"
+                                    @click="changeOrder(order)"
+                                >
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </div>
+                            <div class="table__action">
+                                <button type="button" class="table__btn" aria-label="Delete order" @click="cancelOrder">
+                                    <i class="far fa-times"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </td>
+                    </td>
+                </template>
             </tr>
         </tbody>
     </table>
@@ -72,11 +103,16 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'Table',
+    data() {
+        return {
+            edit: null,
+        };
+    },
     computed: {
-        ...mapGetters(['getOrders']),
+        ...mapGetters(['getOrders', 'getEditOrder']),
     },
     methods: {
-        ...mapActions(['removedOrder', 'sortBy']),
+        ...mapActions(['removeOrder', 'selectOrder', 'changeOrder', 'cancelOrder', 'sortBy']),
     },
 };
 </script>

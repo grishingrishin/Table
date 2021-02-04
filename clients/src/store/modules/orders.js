@@ -32,6 +32,7 @@ const state = {
         },
     ],
     sortBy: '',
+    editOrder: null,
 };
 
 const getters = {
@@ -56,17 +57,30 @@ const getters = {
     },
     sortByName: state => [...state.orders].sort((a, b) => (a.name < b.name ? -1 : 1)),
     sortByEmail: state => [...state.orders].sort((a, b) => (a.email < b.email ? -1 : 1)),
+    getEditOrder: state => state.editOrder,
 };
 
 const mutations = {
     ADD_ORDER(state, order) {
         state.order.push(order);
     },
-    REMOVED_ORDERS(state, id) {
+    REMOVE_ORDER(state, id) {
         state.orders = state.orders.filter(order => order.id !== id);
     },
-    SET_SORT_BY(state, sort) {
+    SORT_BY(state, sort) {
         state.sortBy = !state.sortBy ? sort : '';
+    },
+    SELECT_ORDER(state, id) {
+        state.editOrder = id;
+    },
+    CHANGE_ORDER(state, editedOrder) {
+        const { orders } = state;
+        const findOrderById = orders.find(order => order.id === editedOrder.id);
+
+        console.log(findOrderById);
+    },
+    CANCEL_ORDER(state) {
+        state.editOrder = null;
     },
 };
 
@@ -74,11 +88,21 @@ const actions = {
     addOrder({ commit }, order) {
         commit('ADD_ORDER', order);
     },
-    removedOrder({ commit }, id) {
-        commit('REMOVED_ORDERS', id);
+    selectOrder({ commit }, id) {
+        commit('SELECT_ORDER', id);
+    },
+    changeOrder({ commit }, order) {
+        commit('CHANGE_ORDER', order);
+        commit('CANCEL_ORDER');
+    },
+    cancelOrder({ commit }) {
+        commit('CANCEL_ORDER');
+    },
+    removeOrder({ commit }, id) {
+        commit('REMOVE_ORDER', id);
     },
     sortBy({ commit }, sort) {
-        commit('SET_SORT_BY', sort);
+        commit('SORT_BY', sort);
     },
 };
 
