@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import store from './store/';
 import Router from 'vue-router';
-import Table from './components/Table.vue';
+import Orders from './views/Orders.vue';
 import Authorization from './components/Authorization.vue';
 
 Vue.use(Router);
@@ -17,7 +17,7 @@ const routes = new Router({
     routes: [
         {
             path: '/',
-            component: Table,
+            component: Orders,
             beforeEnter: ifAuthenticated,
         },
         {

@@ -24,6 +24,7 @@ body {
 button {
     margin: 0;
     padding: 0;
+    border: none;
     background-color: transparent;
     cursor: pointer;
     outline: none;
