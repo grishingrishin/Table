@@ -34,8 +34,20 @@
                         </div>
                     </div>
                 </td>
-                <!-- Cell for edit buttons -->
-                <td class="table__cell"></td>
+                <td class="table__cell">
+                    <div class="table__actions" v-if="!getCreateState">
+                        <div class="table__action">
+                            <button
+                                type="button"
+                                class="table__btn"
+                                aria-label="Edit order"
+                                @click="switchStateOfCreate"
+                            >
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </thead>
         <TableBody />
@@ -43,7 +55,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import TableBody from './TableBody.vue';
 
 export default {
@@ -51,8 +63,11 @@ export default {
     components: {
         TableBody,
     },
+    computed: {
+        ...mapGetters(['getOrders', 'getCreateState']),
+    },
     methods: {
-        ...mapActions(['sortBy']),
+        ...mapActions(['sortBy', 'switchStateOfCreate']),
     },
 };
 </script>

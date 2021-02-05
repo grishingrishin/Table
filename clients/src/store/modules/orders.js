@@ -33,6 +33,7 @@ const state = {
     ],
     sortBy: '',
     editOrder: null,
+    isCreateOrder: false,
 };
 
 const getters = {
@@ -58,11 +59,14 @@ const getters = {
     getSortByName: state => [...state.orders].sort((a, b) => (a.name < b.name ? -1 : 1)),
     getSortByEmail: state => [...state.orders].sort((a, b) => (a.email < b.email ? -1 : 1)),
     getEditOrderID: state => state.editOrder,
+    getCreateState: state => state.isCreateOrder,
 };
 
 const mutations = {
     ADD_ORDER(state, order) {
-        state.order.push(order);
+        const { orders } = state;
+        const id = orders.length + 1;
+        state.orders.unshift({ id, ...order });
     },
     REMOVE_ORDER(state, id) {
         state.orders = state.orders.filter(order => order.id !== id);
@@ -81,6 +85,9 @@ const mutations = {
     },
     CANCEL_EDIT(state) {
         state.editOrder = null;
+    },
+    SET_CREATE_STATE(state) {
+        state.isCreateOrder = !state.isCreateOrder;
     },
 };
 
@@ -103,6 +110,9 @@ const actions = {
     },
     sortBy({ commit }, sort) {
         commit('SORT_BY', sort);
+    },
+    switchStateOfCreate({ commit }) {
+        commit('SET_CREATE_STATE');
     },
 };
 
