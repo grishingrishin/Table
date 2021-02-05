@@ -24,5 +24,9 @@ export default {
     padding: 1em;
     align-items: center;
     justify-content: center;
+
+    &__main {
+        min-height: 480px;
+    }
 }
 </style>
