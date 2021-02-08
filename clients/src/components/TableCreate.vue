@@ -15,12 +15,12 @@
         <td class="table__cell">
             <div class="table__actions">
                 <div class="table__action">
-                    <button type="button" class="table__btn" aria-label="Edit order" @click="createNewOrder">
+                    <button type="button" class="table__btn" aria-label="Edit order" @click="createOrder">
                         <i class="fas fa-check"></i>
                     </button>
                 </div>
                 <div class="table__action">
-                    <button type="button" class="table__btn" aria-label="Delete order" @click="destroyNewOrder">
+                    <button type="button" class="table__btn" aria-label="Delete order" @click="destroyOrder">
                         <i class="far fa-times"></i>
                     </button>
                 </div>
@@ -47,11 +47,8 @@ export default {
         ...mapGetters(['getOrders']),
     },
     methods: {
-        ...mapActions(['addOrder', 'switchStateOfCreate']),
-        openCreateOrderRow() {
-            this.isCreateOrder = true;
-        },
-        createNewOrder() {
+        ...mapActions(['addOrder', 'switchRowCreater']),
+        createOrder() {
             const { order } = this;
 
             for (const k in order) {
@@ -61,12 +58,12 @@ export default {
             }
 
             this.addOrder(order);
-            this.destroyNewOrder();
+            this.destroyOrder();
         },
-        destroyNewOrder() {
+        destroyOrder() {
             const { order } = this;
             for (const k in order) order[k] = '';
-            this.switchStateOfCreate();
+            this.switchRowCreater();
             this.order = order;
         },
     },

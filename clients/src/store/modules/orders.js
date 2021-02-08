@@ -110,7 +110,7 @@ const actions = {
     sortBy({ commit }, sort) {
         commit('SORT_BY', sort);
     },
-    switchStateOfCreate({ commit }) {
+    switchRowCreater({ commit }) {
         commit('SET_CREATE_STATE');
     },
 };

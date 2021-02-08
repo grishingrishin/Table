@@ -37,12 +37,7 @@
                 <td class="table__cell">
                     <div class="table__actions" v-if="!getCreateState">
                         <div class="table__action">
-                            <button
-                                type="button"
-                                class="table__btn"
-                                aria-label="Edit order"
-                                @click="switchStateOfCreate"
-                            >
+                            <button type="button" class="table__btn" aria-label="Edit order" @click="switchRowCreater">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
@@ -67,7 +62,7 @@ export default {
         ...mapGetters(['getOrders', 'getCreateState']),
     },
     methods: {
-        ...mapActions(['sortBy', 'switchStateOfCreate']),
+        ...mapActions(['sortBy', 'switchRowCreater']),
     },
 };
 </script>
