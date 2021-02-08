@@ -1,18 +1,18 @@
 <template>
     <div class="orders">
         <div class="orders__main">
-            <Table />
+            <TableWithOrders />
         </div>
     </div>
 </template>
 
 <script>
-import Table from '../components/Table.vue';
+import TableWithOrders from '../components/TableWithOrders.vue';
 
 export default {
     name: 'Orders',
     components: {
-        Table,
+        TableWithOrders,
     },
 };
 </script>

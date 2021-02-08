@@ -45,18 +45,18 @@
                 </td>
             </tr>
         </thead>
-        <TableBody />
+        <RowsWithOrders />
     </table>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import TableBody from './TableBody.vue';
+import RowsWithOrders from './RowsWithOrders.vue';
 
 export default {
-    name: 'Table',
+    name: 'TableWithOrders',
     components: {
-        TableBody,
+        RowsWithOrders,
     },
     computed: {
         ...mapGetters(['getOrders', 'getCreateState']),

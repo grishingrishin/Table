@@ -1,27 +1,27 @@
 <template>
     <tbody class="table__body">
-        <TableCreate v-if="getCreateState" />
+        <RowWithNewOrder v-if="getCreateState" />
         <!-- End create table row -->
 
         <template v-for="(order, index) of getOrders">
-            <TableEdit :order="order" :key="index" v-if="order.id == getEditOrderID" />
-            <TableRow :order="order" :key="index" v-else />
+            <RowWithEditOrder :order="order" :key="index" v-if="order.id == getEditOrderID" />
+            <RowWithOrder :order="order" :key="index" v-else />
         </template>
     </tbody>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import TableRow from './TableRow.vue';
-import TableEdit from './TableEdit.vue';
-import TableCreate from './TableCreate.vue';
+import RowWithOrder from './RowWithOrder.vue';
+import RowWithEditOrder from './RowWithEditOrder.vue';
+import RowWithNewOrder from './RowWithNewOrder.vue';
 
 export default {
-    name: 'TableBody',
+    name: 'RowsWithOrders',
     components: {
-        TableCreate,
-        TableEdit,
-        TableRow,
+        RowWithNewOrder,
+        RowWithEditOrder,
+        RowWithOrder,
     },
     computed: {
         ...mapGetters(['getOrders', 'getEditOrderID', 'getCreateState']),

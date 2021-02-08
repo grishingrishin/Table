@@ -1,13 +1,8 @@
 <template>
     <tr class="table__row">
-        <td class="table__cell">
-            {{ order.id }}
+        <td class="table__cell" v-for="(value, index) in order" :key="index">
+            {{ value }}
         </td>
-        <template v-for="(field, index) in order">
-            <td class="table__cell" :key="index" v-if="field !== order.id">
-                {{ field }}
-            </td>
-        </template>
         <td class="table__cell">
             <div class="table__actions">
                 <div class="table__action">
@@ -29,7 +24,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-    name: 'TableRow',
+    name: 'RowWithOrder',
     props: {
         order: {
             type: Object,

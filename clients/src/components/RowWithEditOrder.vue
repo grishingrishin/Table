@@ -33,7 +33,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-    name: 'TableEdit',
+    name: 'RowWithEditOrder',
     props: {
         order: {
             type: Object,

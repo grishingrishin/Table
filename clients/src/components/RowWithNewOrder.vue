@@ -33,7 +33,7 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-    name: 'TableCreate',
+    name: 'RowWithNewOrder',
     data() {
         return {
             order: {
