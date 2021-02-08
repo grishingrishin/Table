@@ -60,7 +60,7 @@ export default {
                 }
             }
 
-            this.addOrder(this.order);
+            this.addOrder(order);
             this.destroyNewOrder();
         },
         destroyNewOrder() {

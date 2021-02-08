@@ -79,9 +79,8 @@ const mutations = {
     },
     CHANGE_ORDER(state, editedOrder) {
         const { orders } = state;
-        const findOrderById = orders.find(order => order.id === editedOrder.id);
-
-        console.log(findOrderById);
+        const newOrders = orders.map(order => (order.id === editedOrder.id ? editedOrder : order));
+        state.orders = newOrders;
     },
     CANCEL_EDIT(state) {
         state.editOrder = null;
@@ -100,7 +99,7 @@ const actions = {
     },
     changeOrder({ commit }, order) {
         commit('CHANGE_ORDER', order);
-        commit('CANCEL_ORDER');
+        commit('CANCEL_EDIT');
     },
     cancelEdit({ commit }) {
         commit('CANCEL_EDIT');

@@ -37,7 +37,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions(['removeOrder', 'selectOrder', 'changeOrder', 'cancelEdit']),
+        ...mapActions(['removeOrder', 'selectOrder']),
     },
 };
 </script>

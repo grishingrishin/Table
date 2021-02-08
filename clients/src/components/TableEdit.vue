@@ -3,20 +3,19 @@
         <td class="table__cell">
             {{ order.id }}
         </td>
-        <template v-for="(value, key, index) in order">
-            <td class="table__cell" :key="index" v-if="value !== order.id">
-                <input type="text" class="table__input" :name="key" :value="value" :placeholder="key" />
-            </td>
-        </template>
+        <td class="table__cell">
+            <input type="text" class="table__input" name="name" v-model="edit.name" placeholder="Enter name" />
+        </td>
+        <td class="table__cell">
+            <input type="text" class="table__input" name="email" v-model="edit.email" placeholder="Enter email" />
+        </td>
+        <td class="table__cell">
+            <input type="text" class="table__input" name="phone" v-model="edit.phone" placeholder="Enter phone" />
+        </td>
         <td class="table__cell">
             <div class="table__actions">
                 <div class="table__action">
-                    <button
-                        type="button"
-                        class="table__btn"
-                        aria-label="Edit order"
-                        @click="changeOrder(order, editOrderID)"
-                    >
+                    <button type="button" class="table__btn" aria-label="Edit order" @click="changeOrder(edit)">
                         <i class="fas fa-check"></i>
                     </button>
                 </div>
@@ -41,8 +40,15 @@ export default {
             required: true,
         },
     },
+    data() {
+        return {
+            edit: {
+                ...this.order,
+            },
+        };
+    },
     methods: {
-        ...mapActions(['removeOrder', 'selectOrder', 'changeOrder', 'cancelEdit']),
+        ...mapActions(['changeOrder', 'cancelEdit']),
     },
 };
 </script>

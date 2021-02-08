@@ -1,9 +1,11 @@
 <template>
     <tbody class="table__body">
         <TableCreate v-if="getCreateState" />
-        <template v-for="order of getOrders">
-            <TableEdit :order="order" :key="order.id" v-if="order.id == getEditOrderID" />
-            <TableRow :order="order" :key="order.id" v-else />
+        <!-- End create table row -->
+
+        <template v-for="(order, index) of getOrders">
+            <TableEdit :order="order" :key="index" v-if="order.id == getEditOrderID" />
+            <TableRow :order="order" :key="index" v-else />
         </template>
     </tbody>
 </template>
